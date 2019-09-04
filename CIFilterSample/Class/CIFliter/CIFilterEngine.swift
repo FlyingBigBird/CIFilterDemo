@@ -15,6 +15,15 @@ enum CIContextOnArchitecture {
     case OnGPU
 }
 
+/// 渲染类型
+///
+/// - image: 图片渲染...
+/// - video: 视频渲染...
+enum CIFilterType {
+    case image
+    case video
+}
+
 import UIKit
 
 public class CIFilterEngine {
