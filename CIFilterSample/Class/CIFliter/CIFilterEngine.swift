@@ -69,14 +69,26 @@ public class CIFilterEngine {
         return imgContext!
     }
     
+    class func filterByName(filterName:String) -> CIFilter {
+        
+        let filter:CIFilter = CIFilter(name: filterName) ?? CIFilter()
+        return filter
+    }
+    
+    class func filterByCIImage(filterName:String, ciImage:CIImage) -> CIFilter {
+        
+        let filter:CIFilter = CIFilter(name: filterName, parameters: [kCIInputImageKey:ciImage]) ?? CIFilter()
+        return filter
+    }
+    
     // 生成图片...
     class func generateImageRef(img:UIImage, filterName:String, context:CIContext) -> UIImage {
         
         var filterImg:UIImage = UIImage.init()
         
-        let ciImage =  CIImage.init(cgImage: img.cgImage!)
+        let ciImage = CIImage.init(cgImage: img.cgImage!)
 
-        let filter:CIFilter = CIFilter(name: filterName, parameters: [kCIInputImageKey:ciImage])!
+        let filter:CIFilter = CIFilter(name: filterName, parameters: [kCIInputImageKey:ciImage]) ?? CIFilter()
         filter.setDefaults()
         // 渲染CIImage
         let outputImg:CIImage = filter.outputImage ?? CIImage()

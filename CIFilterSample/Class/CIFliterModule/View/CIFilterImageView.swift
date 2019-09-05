@@ -85,7 +85,7 @@ class CIFilterImageView: UIView {
             
             let nums:NSInteger = self.filterNames.count
             if nums > 0 {
-
+                
                 let randNum:NSInteger = Int(arc4random())%(nums-1)
                 var getName:String = String("\(self.filterNames[randNum])")
                 if getName == "CIColorCubesMixedWithMask" {
