@@ -37,56 +37,57 @@ public class CIFilterEngine {
         
         return self.sharedEngien
     }
-}
-
-
-/// 查询滤镜名称
-///
-/// - Parameter category: 滤镜的类别
-/// - 常用类别有：kCICategoryDistortionEffect  kCICategoryColorEffect
-/// - Returns: 相关类别包含的所有滤镜类型...
-func filterNames (category:String) -> Array<Any> {
     
-    let names:Array = CIFilter .filterNames(inCategory: category)
-    return names
-}
-/// 创建CIContext上下文对象...
-///
-/// - Parameter contextType: 基于cup/gpu...
-/// - Returns: CIContext
-func contextByType(contextType:CIContextOnArchitecture) -> CIContext {
-    
-    let imgContext:CIContext?
-    switch contextType {
-    case .OnCPU:
-        print("cpu")
+    /// 查询滤镜名称
+    ///
+    /// - Parameter category: 滤镜的类别
+    /// - 常用类别有：kCICategoryDistortionEffect  kCICategoryColorEffect kCICategoryStylize
+    /// - Returns: 相关类别包含的所有滤镜类型...
+    class func filterNames (category:String) -> Array<Any> {
         
-        imgContext = CIContext.init(options: [CIContextOption.useSoftwareRenderer:true])
-        
-    case .OnGPU:
-        print("gpu")
-        
-        imgContext = CIContext.init(eaglContext: EAGLContext.init(api: EAGLRenderingAPI.openGLES2)!)
+        let names:Array = CIFilter .filterNames(inCategory: category)
+        return names
     }
-    return imgContext!
-}
+    /// 创建CIContext上下文对象...
+    ///
+    /// - Parameter contextType: 基于cup/gpu...
+    /// - Returns: CIContext
+    class func contextByType(contextType:CIContextOnArchitecture) -> CIContext {
+        
+        let imgContext:CIContext?
+        switch contextType {
+        case .OnCPU:
+            print("cpu")
+            
+            imgContext = CIContext.init(options: [CIContextOption.useSoftwareRenderer:true])
+            
+        case .OnGPU:
+            print("gpu")
+            
+            imgContext = CIContext.init(eaglContext: EAGLContext.init(api: EAGLRenderingAPI.openGLES2)!)
+        }
+        return imgContext!
+    }
+    
+    // 生成图片...
+    class func generateImageRef(img:UIImage, filterName:String, context:CIContext) -> UIImage {
+        
+        var filterImg:UIImage = UIImage.init()
+        
+        let ciImage =  CIImage.init(cgImage: img.cgImage!)
 
-// 生成图片...
-func generateImageRef(imgName:String,filterName:String, context:CIContext) -> UIImage {
+        let filter:CIFilter = CIFilter(name: filterName, parameters: [kCIInputImageKey:ciImage])!
+        filter.setDefaults()
+        // 渲染CIImage
+        let outputImg:CIImage = filter.outputImage ?? CIImage()
+        
+        // 创建像素位图...
+        let placeCgImage:CGImage = img.cgImage!
+        let cgImage:CGImage = context.createCGImage(outputImg, from: outputImg.extent) ?? placeCgImage
+        filterImg = UIImage(cgImage: cgImage)
+        
+        return filterImg
+    }
     
-    var filterImg:UIImage = UIImage.init()
-    
-    let img:UIImage = UIImage(named: "High Sierra")!
-    let ciImage:CIImage = img.ciImage!
-    let filter:CIFilter = CIFilter(name: filterName, parameters: [kCIInputImageKey:ciImage])!
-    
-    // 渲染CIImage
-    let outputImg:CIImage = filter.outputImage ?? CIImage()
-    
-    // 创建像素位图...
-    let cgImage:CGImage = context.createCGImage(outputImg, from: outputImg.extent)!
-    filterImg = UIImage.init(cgImage: cgImage)
-    
-    return filterImg
 }
 

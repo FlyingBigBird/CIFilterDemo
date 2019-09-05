@@ -16,6 +16,7 @@ class CIFilterController: UIViewController {
         super.viewWillAppear(animated)
         
         self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.barTintColor = .white
     }
     override func viewDidLoad() {
         super.viewDidLoad()

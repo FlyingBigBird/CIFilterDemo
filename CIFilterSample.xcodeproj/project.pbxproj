@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E32DA3E231FA60000D8FB46 /* CIFilterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32DA3D231FA60000D8FB46 /* CIFilterImageView.swift */; };
 		2E32DA40231FA60B00D8FB46 /* CIFilterVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32DA3F231FA60B00D8FB46 /* CIFilterVideoView.swift */; };
+		2EA35D942320AF5800EF5FA9 /* High-Sierra.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA35D932320AF5800EF5FA9 /* High-Sierra.png */; };
 		2EFD4451231E6408008D503A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD4450231E6408008D503A /* AppDelegate.swift */; };
 		2EFD4453231E6408008D503A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD4452231E6408008D503A /* ViewController.swift */; };
 		2EFD4458231E6409008D503A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD4457231E6409008D503A /* Assets.xcassets */; };
@@ -20,7 +21,6 @@
 		2EFD4487231E6632008D503A /* CIFIlterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD4486231E6632008D503A /* CIFIlterView.swift */; };
 		2EFD4489231E663F008D503A /* CIFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD4488231E663F008D503A /* CIFilterCell.swift */; };
 		2EFD448F231E6739008D503A /* CIFilterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD448E231E6739008D503A /* CIFilterEngine.swift */; };
-		2EFD4491231E73C7008D503A /* High Sierra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD4490231E73C7008D503A /* High Sierra.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		2E32DA3D231FA60000D8FB46 /* CIFilterImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIFilterImageView.swift; sourceTree = "<group>"; };
 		2E32DA3F231FA60B00D8FB46 /* CIFilterVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIFilterVideoView.swift; sourceTree = "<group>"; };
+		2EA35D932320AF5800EF5FA9 /* High-Sierra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High-Sierra.png"; sourceTree = "<group>"; };
 		2EFD444D231E6408008D503A /* CIFilterSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CIFilterSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFD4450231E6408008D503A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EFD4452231E6408008D503A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		2EFD4486231E6632008D503A /* CIFIlterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIFIlterView.swift; sourceTree = "<group>"; };
 		2EFD4488231E663F008D503A /* CIFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIFilterCell.swift; sourceTree = "<group>"; };
 		2EFD448E231E6739008D503A /* CIFilterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIFilterEngine.swift; sourceTree = "<group>"; };
-		2EFD4490231E73C7008D503A /* High Sierra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "High Sierra.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,7 +213,7 @@
 		2EFD4492231E73CD008D503A /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				2EFD4490231E73C7008D503A /* High Sierra.jpg */,
+				2EA35D932320AF5800EF5FA9 /* High-Sierra.png */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -322,9 +322,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EFD4491231E73C7008D503A /* High Sierra.jpg in Resources */,
 				2EFD445B231E6409008D503A /* LaunchScreen.storyboard in Resources */,
 				2EFD4458231E6409008D503A /* Assets.xcassets in Resources */,
+				2EA35D942320AF5800EF5FA9 /* High-Sierra.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
