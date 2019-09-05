@@ -14,7 +14,7 @@ class CIFilterImageView: UIView {
     var imgView:UIImageView?
     var segment:UISegmentedControl?
     var filterName:String = "CIUnsharpMask"
-    var filterNames:NSArray?
+    var filterNames:NSArray = NSArray()
     var i:NSInteger = 0
     
     override init(frame: CGRect) {
@@ -31,7 +31,7 @@ class CIFilterImageView: UIView {
     func showFilterImageSubs() {
       
         self.filterNames = CIFilterEngine.filterNames(category: kCICategoryColorEffect) as NSArray
-        print("filterNames:\(filterNames ?? NSArray())")
+        print("filterNames:\(filterNames)")
         
         self.originImage = UIImage(named: "High-Sierra")
         let originWidth:CGFloat  = self.originImage?.size.width ?? SCREEN_WIDTH
@@ -58,9 +58,9 @@ class CIFilterImageView: UIView {
         self.segment?.tintColor = .lightGray
         self.segment?.setTitleTextAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor:UIColor.blue], for: .normal)
         self.segment?.setTitleTextAttributes([NSAttributedString.Key.font:CUFont(18), NSAttributedString.Key.foregroundColor:UIColor.black], for: .selected)
-
+        
     }
-
+    
     @objc func segmentValueDidChange(segment:UISegmentedControl) {
         
         let context:CIContext = CIFilterEngine.contextByType(contextType: .OnGPU)
@@ -83,11 +83,19 @@ class CIFilterImageView: UIView {
             filterName = "CIThermal"
         case 7:
             
-            let nums:NSInteger = self.filterNames?.count ?? 0
-            let randNum:NSInteger = Int(arc4random())%(nums-1)
-            let getName:String = String("\(self.filterNames?[randNum] ?? "CIUnsharpMask")")
-            filterName = getName
+            let nums:NSInteger = self.filterNames.count
+            if nums > 0 {
 
+                let randNum:NSInteger = Int(arc4random())%(nums-1)
+                var getName:String = String("\(self.filterNames[randNum])")
+                if getName == "CIColorCubesMixedWithMask" {
+                    
+                    getName = "CIUnsharpMask"
+                }
+                filterName = getName
+
+                print("randNum:\(randNum), getName:\(getName)")
+            }
             
         default:
             print("selectedSegmentIndex:\(segment.selectedSegmentIndex)")
@@ -97,14 +105,10 @@ class CIFilterImageView: UIView {
           
             DispatchQueue.main.async(execute: {
                 
-                self.imgView?.image = UIImage()
                 let getImg:UIImage = CIFilterEngine.generateImageRef(img: self.originImage ?? UIImage(), filterName: self.filterName , context: context)
                 self.imgView?.image = getImg
             })
-     
+            
         }
-        
     }
-
-
 }
